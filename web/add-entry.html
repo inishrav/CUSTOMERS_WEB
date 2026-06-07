@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Entry</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Customer Entry</h1>
+
+    <form id="entryForm">
+
+        <label for="customerName">Customer Name</label>
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Enter Customer Name"
+            required>
+
+        <label for="date">Date</label>
+        <input
+            type="date"
+            id="date"
+            required>
+
+        <label for="grossWeight">Gross Weight</label>
+        <input
+            type="number"
+            id="grossWeight"
+            placeholder="Enter Gross Weight"
+            required>
+
+        <label for="netWeight">Net Weight</label>
+        <input
+            type="number"
+            id="netWeight"
+            placeholder="Enter Net Weight"
+            required>
+
+        <label for="kgRate">KG Rate</label>
+        <input
+            type="number"
+            id="kgRate"
+            placeholder="Enter KG Rate"
+            required>
+
+        <div class="button-group">
+
+            <button type="submit">
+                Save Entry
+            </button>
+
+            <button
+                type="button"
+                onclick="window.location.href='payment.html'">
+                Next →
+            </button>
+
+        </div>
+
+    </form>
+
+    <hr>
+
+    <h2>Customer Records</h2>
+
+    <div class="search-container">
+
+        <input
+            type="text"
+            id="searchCustomer"
+            placeholder="Search Customer Name...">
+
+        <input
+            type="text"
+            id="searchFinancialYear"
+            placeholder="Financial Year (Ex: 25-26)">
+
+    </div>
+
+    <table border="1" width="100%">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Gross Weight</th>
+                <th>Net Weight</th>
+                <th>KG Rate</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody id="customerTableBody">
+        </tbody>
+
+    </table>
+
+    <div
+        id="summarySection"
+        style="display:none;margin-top:30px;">
+
+        <h2>Customer's Individual Total</h2>
+
+        <table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Total Gross Weight</th>
+                    <th>Total Net Weight</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+
+            <tbody id="summaryTableBody">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="js/entry.js"></script>
+
+</body>
+</html>

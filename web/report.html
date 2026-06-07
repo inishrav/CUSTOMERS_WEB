@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Report</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📊 Customer Report</h1>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+
+        <a href="add-entry.html">
+            <button type="button">
+                ➕ Add Customer Entry
+            </button>
+        </a>
+
+        <a href="payment.html">
+            <button type="button">
+                💳 Payment Details
+            </button>
+        </a>
+
+    </div>
+
+    <hr>
+
+    <!-- Summary Card -->
+    <div class="card-container">
+
+        <div class="card">
+            <h2>Total Customers</h2>
+            <p id="totalCustomers">0</p>
+        </div>
+
+    </div>
+
+    <!-- Animation Section -->
+    <div class="report-animation">
+
+        <div class="pulse-circle"></div>
+
+        <h2>Customer Analytics Dashboard</h2>
+
+        <p>
+            All customer entries and payment records are stored successfully.
+        </p>
+
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+
+    </div>
+
+    <br>
+
+</div>
+
+<script src="js/report.js"></script>
+
+</body>
+</html>

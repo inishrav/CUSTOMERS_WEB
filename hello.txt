@@ -1,0 +1,39 @@
+Customer_management
+│
+├── src
+│   │
+│   ├── controller
+│   │   ├── DashboardController.java
+│   │   └── EntryController.java
+│   │
+│   ├── model
+│   │   └── DailyEntry.java
+│   │
+│   ├── service
+│   │   └── EntryService.java
+│   │
+│   ├── util
+│   │   └── FileHandler.java
+│   │
+│   └── Main.java
+│
+├── web
+│   │
+│   ├── index.html
+│   │
+│   ├── add-entry.html
+│   │
+│   ├── report.html
+│   │
+│   ├── css
+│   │   └── style.css
+│   │
+│   └── js
+│       ├── app.js
+│       ├── entry.js
+│       └── report.js
+│
+├── data
+│   └── entries.json
+│
+└── README.md

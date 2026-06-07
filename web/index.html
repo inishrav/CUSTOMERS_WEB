@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Customer Ledger</title>
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+            background-color: #030712;
+        }
+
+        .welcome-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #businessCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Perfectly proportioned layout wrapper */
+        .wavy-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 420px;
+            height: 420px;
+        }
+
+        /* Sleek Glassmorphic background shape layers */
+        .wave-background-shape {
+            position: absolute;
+            width: 108%;
+            height: 108%;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 43% 57% 41% 59% / 57% 45% 55% 43%;
+            animation: waveMotion 12s linear infinite alternate;
+        }
+
+        .wave-background-shape.layer-two {
+            width: 104%;
+            height: 104%;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            animation: waveMotionReverse 16s linear infinite alternate;
+        }
+
+        /* Compact, high-end white business card box */
+        .welcome-card {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 40px 32px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            width: 350px;
+            box-sizing: border-box;
+        }
+
+        @keyframes waveMotion {
+            0% { border-radius: 43% 57% 41% 59% / 57% 45% 55% 43%; transform: rotate(0deg); }
+            100% { border-radius: 54% 46% 52% 48% / 48% 54% 46% 52%; transform: rotate(180deg); }
+        }
+
+        @keyframes waveMotionReverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .welcome-card h1 {
+            color: #0f172a;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .sub-text {
+            color: #475569;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Clean executive quote container */
+        .quote-box {
+            color: #334155;
+            margin: 24px 0;
+            padding: 14px 16px;
+            border-left: 3px solid #3b82f6;
+            background: #f8fafc;
+            text-align: left;
+            line-height: 1.5;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            font-weight: 400;
+        }
+
+        .start-btn {
+            background-color: #0f172a;
+            color: #ffffff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .start-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+    </style>
+</head>
+
+<body class="welcome-body">
+
+<canvas id="businessCanvas"></canvas>
+
+<div class="wavy-wrapper">
+    <div class="wave-background-shape layer-two"></div>
+    <div class="wave-background-shape"></div>
+
+    <div class="welcome-card">
+        <h1>Welcome Back! ARUN</h1>
+        <p class="sub-text">Manage your customer records effortlessly.</p>
+
+        <div class="quote-box">
+            "Quality means doing it right, understanding customers and delivering value."
+        </div>
+
+        <button class="start-btn" onclick="window.location.href='add-entry.html'">
+            Open Dashboard →
+        </button>
+    </div>
+</div>
+<script>
+const canvas = document.getElementById('businessCanvas');
+const ctx = canvas.getContext('2d');
+
+let timeTracker = 0;
+let networkParticles = [];
+const particleCount = 45;
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initNetwork();
+}
+
+function initNetwork() {
+    networkParticles = [];
+    for (let i = 0; i < particleCount; i++) {
+        networkParticles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            radius: Math.random() * 2 + 2 // Made nodes crisp and visible
+        });
+    }
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+/* 🔥 ARUN BACKGROUND SIGNATURE LAYER (Stays exactly the same) */
+function drawArunPattern() {
+    ctx.font = "1.6rem 'Brush Script MT', cursive";
+    ctx.fillStyle = "rgba(255,255,255,0.08)";
+    ctx.textAlign = "center";
+
+    const positions = [
+        {x: 100, y: 100, angle: -0.3},
+        {x: 300, y: 150, angle: 0.5},
+        {x: 600, y: 120, angle: -0.2},
+        {x: 200, y: 300, angle: 0.6},
+        {x: 500, y: 320, angle: -0.5},
+        {x: 800, y: 280, angle: 0.4},
+        {x: 150, y: 500, angle: -0.4},
+        {x: 450, y: 520, angle: 0.3},
+        {x: 750, y: 480, angle: -0.6},
+        {x: 350, y: 700, angle: 0.2}
+    ];
+
+    positions.forEach((p, i) => {
+        ctx.save();
+        let targetX = (p.x / 900) * canvas.width;
+        let targetY = (p.y / 800) * canvas.height;
+        
+        ctx.translate(targetX, targetY);
+        ctx.rotate(p.angle + Math.sin(timeTracker + i) * 0.2);
+        ctx.fillText("Arun", 0, 0);
+        ctx.restore();
+    });
+}
+
+/* 🌐 PRO-BUSINESS VISIBLE CONNECTED NETWORK */
+function drawConnectedNetwork() {
+    // Render and move node points
+    networkParticles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        
+        // High visibility bright corporate blue dots with soft glow
+        ctx.fillStyle = 'rgba(59, 130, 246, 0.85)';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = 'rgba(59, 130, 246, 0.5)';
+        ctx.fill();
+        ctx.shadowBlur = 0; // Reset blur for efficient loop execution
+    });
+
+    // Generate network connections
+    for (let i = 0; i < networkParticles.length; i++) {
+        for (let j = i + 1; j < networkParticles.length; j++) {
+            let dx = networkParticles[i].x - networkParticles[j].x;
+            let dy = networkParticles[i].y - networkParticles[j].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 150) {
+                let alpha = (1 - (distance / 150)) * 0.28;
+                ctx.beginPath();
+                ctx.moveTo(networkParticles[i].x, networkParticles[i].y);
+                ctx.lineTo(networkParticles[j].x, networkParticles[j].y);
+                
+                // Tech-focused corporate clean connection lines
+                ctx.strokeStyle = `rgba(147, 197, 253, ${alpha})`;
+                ctx.lineWidth = 0.9;
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    timeTracker += 0.01;
+
+    // Premium Corporate Gradient Darkspace Layout 
+    let grad = ctx.createRadialGradient(
+        canvas.width * 0.5, canvas.height * 0.5, 0,
+        canvas.width * 0.5, canvas.height * 0.5, Math.max(canvas.width, canvas.height)
+    );
+    grad.addColorStop(0, '#0f172a');
+    grad.addColorStop(0.6, '#030712');
+    grad.addColorStop(1, '#02040a');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    drawArunPattern();
+    drawConnectedNetwork();
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
