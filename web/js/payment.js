@@ -16,59 +16,63 @@ const body = document.getElementById("paymentBody");
 const totalPaidEl = document.getElementById("totalPaid");
 
 /* DYNAMIC MONITORING FOR 'OTHERS' SELECTION */
-modeEl.addEventListener("change", function () {
-    if (this.value === "Others") {
-        otherModeContainer.style.display = "block";
-        otherModeDetails.required = true;
-    } else {
-        otherModeContainer.style.display = "none";
-        otherModeDetails.required = false;
-        otherModeDetails.value = "";
-    }
-});
+if (modeEl) {
+    modeEl.addEventListener("change", function () {
+        if (this.value === "Others") {
+            otherModeContainer.style.display = "block";
+            otherModeDetails.required = true;
+        } else {
+            otherModeContainer.style.display = "none";
+            otherModeDetails.required = false;
+            otherModeDetails.value = "";
+        }
+    });
+}
 
 /* SAVE PAYMENT */
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+if (form) {
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-    // Determine finalized payment string based on custom specification availability
-    let dynamicModeValue = modeEl.value;
-    if (dynamicModeValue === "Others") {
-        dynamicModeValue = "Others: " + otherModeDetails.value.trim();
-    }
+        let dynamicModeValue = modeEl.value;
+        if (dynamicModeValue === "Others") {
+            dynamicModeValue = "Others: " + otherModeDetails.value.trim();
+        }
 
-    let payment = {
-        paymentDate: dateEl.value,
-        customerName: nameEl.value,
-        paymentMode: dynamicModeValue,
-        amountGiven: Number(amountEl.value)
-    };
+        let payment = {
+            paymentDate: dateEl.value,
+            customerName: nameEl.value,
+            paymentMode: dynamicModeValue,
+            amountGiven: Number(amountEl.value)
+        };
 
-    let payments = JSON.parse(localStorage.getItem("payments")) || [];
+        let payments = JSON.parse(localStorage.getItem("payments")) || [];
 
-    if (editIndex === -1) {
-        payments.push(payment);
-    } else {
-        payments[editIndex] = payment;
-        editIndex = -1;
-        document.querySelector("#paymentForm button[type='submit']").innerText = "Save Payment";
-    }
+        if (editIndex === -1) {
+            payments.push(payment);
+        } else {
+            payments[editIndex] = payment;
+            editIndex = -1;
+            document.querySelector("#paymentForm button[type='submit']").innerText = "Save Payment";
+        }
 
-    localStorage.setItem("payments", JSON.stringify(payments));
+        localStorage.setItem("payments", JSON.stringify(payments));
 
-    form.reset();
-    otherModeContainer.style.display = "none";
-    otherModeDetails.required = false;
+        form.reset();
+        if (otherModeContainer) otherModeContainer.style.display = "none";
+        if (otherModeDetails) otherModeDetails.required = false;
 
-    loadPayments();
-    alert("Payment Saved Successfully");
-});
+        loadPayments();
+        alert("Payment Saved Successfully");
+    });
+}
 
 /* LOAD TABLE */
 function loadPayments(data = null) {
     let payments = JSON.parse(localStorage.getItem("payments")) || [];
     let list = data || payments;
 
+    if (!body) return;
     body.innerHTML = "";
     let totalPaid = 0;
 
@@ -93,7 +97,9 @@ function loadPayments(data = null) {
         `;
     });
 
-    totalPaidEl.innerText = totalPaid.toFixed(2);
+    if (totalPaidEl) {
+        totalPaidEl.innerText = totalPaid.toFixed(2);
+    }
 }
 
 /* EDIT */
@@ -101,25 +107,31 @@ function editPayment(index) {
     let payments = JSON.parse(localStorage.getItem("payments")) || [];
     let payment = payments[index];
 
+    if (!dateEl || !nameEl || !amountEl || !modeEl) return;
+
     dateEl.value = payment.paymentDate;
     nameEl.value = payment.customerName;
     amountEl.value = payment.amountGiven;
 
-    // Parse out data if it was originally saved under "Others: [Details]"
     if (payment.paymentMode.startsWith("Others: ")) {
         modeEl.value = "Others";
-        otherModeContainer.style.display = "block";
-        otherModeDetails.required = true;
-        otherModeDetails.value = payment.paymentMode.replace("Others: ", "");
+        if (otherModeContainer) otherModeContainer.style.display = "block";
+        if (otherModeDetails) {
+            otherModeDetails.required = true;
+            otherModeDetails.value = payment.paymentMode.replace("Others: ", "");
+        }
     } else {
         modeEl.value = payment.paymentMode;
-        otherModeContainer.style.display = "none";
-        otherModeDetails.required = false;
-        otherModeDetails.value = "";
+        if (otherModeContainer) otherModeContainer.style.display = "none";
+        if (otherModeDetails) {
+            otherModeDetails.required = false;
+            otherModeDetails.value = "";
+        }
     }
 
     editIndex = index;
-    document.querySelector("#paymentForm button[type='submit']").innerText = "Update Payment";
+    const submitBtn = document.querySelector("#paymentForm button[type='submit']");
+    if (submitBtn) submitBtn.innerText = "Update Payment";
 }
 
 /* DELETE */
@@ -136,16 +148,20 @@ function deletePayment(index) {
 }
 
 /* SEARCH */
-searchBox.addEventListener("input", function () {
-    let value = this.value.toLowerCase();
-    let payments = JSON.parse(localStorage.getItem("payments")) || [];
+if (searchBox) {
+    searchBox.addEventListener("input", function () {
+        let value = this.value.toLowerCase();
+        let payments = JSON.parse(localStorage.getItem("payments")) || [];
 
-    let filtered = payments.filter(payment =>
-        payment.customerName.toLowerCase().includes(value)
-    );
+        let filtered = payments.filter(payment =>
+            payment.customerName.toLowerCase().includes(value)
+        );
 
-    loadPayments(filtered);
-});
+        loadPayments(filtered);
+    });
+}
 
 /* INITIAL LOAD */
-loadPayments();
+window.addEventListener("load", function() {
+    loadPayments();
+});

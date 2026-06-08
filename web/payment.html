@@ -3,112 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Details</title>
+    <title>Payment Details - Customer Ledger</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Light Theme Executive Makeover */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc; /* Clean Light Gray/White Background */
+            color: #0f172a; /* Dark text for high contrast readability */
+            overflow-x: hidden;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100vw;
+        }
+
+        /* ------------------------------------------
+           LIGHT THEME SIDEBAR CONFIGURATION
+        ------------------------------------------ */
+        .sidebar {
+            width: 280px;
+            min-width: 280px;
+            background: #0f172a; /* Dark enterprise sidebar to anchor design */
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .sidebar-brand-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .sidebar-item {
+            margin-bottom: 8px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-link:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-item.active .sidebar-link {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.15);
+            border-left: 3px solid #3b82f6;
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            font-size: 0.75rem;
+            color: #475569;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 16px;
+        }
+
+        /* ------------------------------------------
+           MAIN CONTENT WORKSPACE AREA
+        ------------------------------------------ */
+        .main-content {
+            flex-grow: 1;
+            margin-left: 280px; 
+            padding: 40px;
+            box-sizing: border-box;
+            background-color: #ffffff; /* White canvas background */
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e2e8f0; /* Crisp subtle layout borders */
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+            color: #0f172a;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #e2e8f0;
+            margin: 30px 0;
+        }
+
+        /* Light Theme Balance Info Card overrides if needed */
+        .card {
+            background-color: #f1f5f9 !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
+<div class="dashboard-container">
 
-    <h1>Payment Details</h1>
+    <!-- Premium Left Sidebar -->
+    <aside class="sidebar">
+        <!-- <div class="sidebar-brand-wrapper">
+            <h2 class="sidebar-title">Arun Business System</h2>
+        </div> -->
 
-    <div class="nav-buttons">
-        <button type="button"
-                onclick="window.location.href='add-entry.html'">
-            ← Back
-        </button>
-    </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link">
+                    <span>🏠</span> Home
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="add-entry.html" class="sidebar-link">
+                    <span>👤</span> Customer Details
+                </a>
+            </li>
+            <li class="sidebar-item active">
+                <a href="payment.html" class="sidebar-link">
+                    <span>💳</span> Payment Details
+                </a>
+            </li>
+        </ul>
 
-    <br>
+        <div class="sidebar-footer">
+            &copy; 2026 ARUN Ledger System
+        </div>
+    </aside>
 
-    <input
-        type="text"
-        id="searchBox"
-        placeholder="Search Customer Name..."
-    >
+    <!-- Main Workspace Area -->
+    <main class="main-content">
+        <div class="container">
 
-    <br><br>
+            <h1>Payment Details</h1>
+<!-- 
+            <div class="nav-buttons">
+                <button type="button" onclick="window.location.href='add-entry.html'">
+                    ← Back
+                </button>
+            </div> -->
 
-    <div class="card">
-        <h3>Total Paid Amount</h3>
-        <p id="totalPaid">0</p>
-    </div>
+            <br>
 
-    <hr>
-
-    <form id="paymentForm">
-
-        <label for="paymentDate">Date</label>
-        <input
-            type="date"
-            id="paymentDate"
-            required>
-
-        <label for="customerName">Customer Name</label>
-        <input
-            type="text"
-            id="customerName"
-            placeholder="Enter Customer Name"
-            required>
-
-        <label for="paymentMode">Mode Of Payment</label>
-        <select id="paymentMode" required>
-            <option value="" disabled selected>Select Payment Mode</option>
-            <option value="Cash">Cash</option>
-            <option value="UPI">UPI</option>
-            <option value="Cheque">Cheque</option>
-            <option value="Bank Transfer">Bank Transfer</option>
-            <option value="Google Pay">Google Pay</option>
-            <option value="PhonePe">PhonePe</option>
-            <option value="Paytm">Paytm</option>
-            <option value="Credit Card">Credit Card</option>
-            <option value="Debit Card">Debit Card</option>
-            <option value="Others">Others (Type Specific Details)</option>
-        </select>
-
-        <div id="otherModeContainer" style="display: none; margin-top: 10px;">
-            <label for="otherModeDetails">Specify Other Payment Details / Person Name</label>
             <input
                 type="text"
-                id="otherModeDetails"
-                placeholder="Enter details or who made the payment">
+                id="searchBox"
+                placeholder="Search Customer Name..."
+            >
+
+            <br><br>
+
+            <div class="card">
+                <h3>Total Paid Amount</h3>
+                <p id="totalPaid">0</p>
+            </div>
+
+            <hr>
+
+            <form id="paymentForm">
+                <label for="customerName">Customer Name</label>
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Enter Customer Name"
+                    required>
+
+                <label for="paymentDate">Date</label>
+                <input
+                    type="date"
+                    id="paymentDate"
+                    required>
+
+                
+
+                <label for="paymentMode">Mode Of Payment</label>
+                <select id="paymentMode" required>
+                    <option value="" disabled selected>Select Payment Mode</option>
+                    <option value="Cash">Cash</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Cheque">Cheque</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="Google Pay">Google Pay</option>
+                    <option value="PhonePe">PhonePe</option>
+                    <option value="Paytm">Paytm</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">Debit Card</option>
+                    <option value="Others">Others (Type Specific Details)</option>
+                </select>
+
+                <div id="otherModeContainer" style="display: none; margin-top: 10px;">
+                    <label for="otherModeDetails">Specify Other Payment Details / Person Name</label>
+                    <input
+                        type="text"
+                        id="otherModeDetails"
+                        placeholder="Enter details or who made the payment">
+                </div>
+
+                <label for="amountGiven" style="margin-top: 10px;">Amount Given</label>
+                <input
+                    type="number"
+                    id="amountGiven"
+                    placeholder="Enter Amount"
+                    required>
+
+                <br><br>
+
+                <button type="submit">
+                    Save Payment
+                </button>
+
+            </form>
+
+            <hr>
+
+            <h2>Payment Records</h2>
+
+            <table border="1" width="100%" id="paymentTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Mode</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="paymentBody">
+                </tbody>
+            </table>
+
         </div>
-
-        <label for="amountGiven" style="margin-top: 10px;">Amount Given</label>
-        <input
-            type="number"
-            id="amountGiven"
-            placeholder="Enter Amount"
-            required>
-
-        <br><br>
-
-        <button type="submit">
-            Save Payment
-        </button>
-
-    </form>
-
-    <hr>
-
-    <h2>Payment Records</h2>
-
-    <table border="1" width="100%" id="paymentTable">
-
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Customer</th>
-                <th>Mode</th>
-                <th>Amount</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-
-        <tbody id="paymentBody">
-        </tbody>
-
-    </table>
+    </main>
 
 </div>
 

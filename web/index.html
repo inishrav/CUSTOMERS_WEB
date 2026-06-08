@@ -12,15 +12,17 @@
             padding: 0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             overflow: hidden;
-            background-color: #030712;
+            background-color: #0f172a; /* Main Background changed to Navy Blue */
+            color: #ffffff;
         }
 
-        .welcome-body {
+        /* Master Dashboard Layout Grid */
+        .dashboard-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            width: 100vw;
+            height: 100vh;
             position: relative;
+            z-index: 2;
         }
 
         #businessCanvas {
@@ -32,10 +34,159 @@
             z-index: 1;
         }
 
-        /* Perfectly proportioned layout wrapper */
+        /* ------------------------------------------
+           PREMIUM SIDEBAR STYLES (Color Changed)
+        ------------------------------------------ */
+        .sidebar {
+            width: 280px;
+            background: #1e293b; /* Changed Sidebar to Premium Dark Slate/Charcoal */
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            box-sizing: border-box;
+            justify-content: flex-start;
+        }
+
+        .sidebar-brand-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #f8fafc;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 0;
+        }
+
+        .sidebar-item {
+            margin-bottom: 8px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-link:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Active Navigation Highlighting */
+        .sidebar-item.active .sidebar-link {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid #3b82f6;
+            font-weight: 600;
+        }
+
+        /* Growth Mindset Card Styles */
+        .growth-card {
+            margin-top: 20px;
+            background: rgba(15, 23, 42, 0.45); 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 20px 15px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .growth-image {
+            width: 90px;
+            height: 90px;
+            margin: auto;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.12);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .growth-card h3 {
+            margin: 0 0 20px;
+            font-size: 1.4rem;
+            line-height: 1.2;
+            color: #60a5fa;
+            letter-spacing: 1px;
+        }
+
+        .growth-points {
+            text-align: left;
+        }
+
+        .point {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .point span {
+            font-size: 20px;
+        }
+
+        .point p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        .growth-quote {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .sidebar-footer {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 16px;
+            margin-top: auto;
+        }
+
+        /* ------------------------------------------
+           MAIN CONTENT DISPLAY STYLES
+        ------------------------------------------ */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 40px;
+        }
         .wavy-wrapper {
             position: relative;
-            z-index: 2;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -43,15 +194,14 @@
             height: 420px;
         }
 
-        /* Sleek Glassmorphic background shape layers */
         .wave-background-shape {
             position: absolute;
             width: 108%;
             height: 108%;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(30, 41, 59, 0.2);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 43% 57% 41% 59% / 57% 45% 55% 43%;
             animation: waveMotion 12s linear infinite alternate;
         }
@@ -60,22 +210,22 @@
             width: 104%;
             height: 104%;
             background: rgba(15, 23, 42, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.02);
             animation: waveMotionReverse 16s linear infinite alternate;
         }
 
-        /* Compact, high-end white business card box */
+        /* Welcome box with distinct borders for dark background */
         .welcome-card {
             position: relative;
             z-index: 3;
             text-align: center;
             padding: 40px 32px;
-            background: rgba(255, 255, 255, 0.96);
+            background: rgba(30, 41, 59, 0.9); /* Made card dark to match theme */
             border-radius: 24px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
             width: 350px;
             box-sizing: border-box;
+            border: 2px solid #3b82f6; /* Blue highlight border */
         }
 
         @keyframes waveMotion {
@@ -89,7 +239,7 @@
         }
 
         .welcome-card h1 {
-            color: #0f172a;
+            color: #ffffff;
             margin-top: 0;
             margin-bottom: 8px;
             font-size: 2rem;
@@ -98,28 +248,28 @@
         }
 
         .sub-text {
-            color: #475569;
+            color: #94a3b8;
             margin-bottom: 24px;
             font-size: 0.95rem;
             line-height: 1.4;
         }
 
-        /* Clean executive quote container */
         .quote-box {
-            color: #334155;
+            color: #cbd5e1;
             margin: 24px 0;
             padding: 14px 16px;
-            border-left: 3px solid #3b82f6;
-            background: #f8fafc;
+            background: #0f172a;
             text-align: left;
             line-height: 1.5;
             border-radius: 4px;
             font-size: 0.88rem;
             font-weight: 400;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #3b82f6; 
         }
 
         .start-btn {
-            background-color: #0f172a;
+            background-color: #3b82f6;
             color: #ffffff;
             border: none;
             padding: 12px 28px;
@@ -129,6 +279,9 @@
             cursor: pointer;
             width: 100%;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
         }
 
         .start-btn:hover {
@@ -139,34 +292,103 @@
     </style>
 </head>
 
-<body class="welcome-body">
+<body>
 
 <canvas id="businessCanvas"></canvas>
 
-<div class="wavy-wrapper">
-    <div class="wave-background-shape layer-two"></div>
-    <div class="wave-background-shape"></div>
+<div class="dashboard-container">
 
-    <div class="welcome-card">
-        <h1>Welcome Back! ARUN</h1>
-        <p class="sub-text">Manage your customer records effortlessly.</p>
+    <!-- Premium Left Sidebar (New Color Layout) -->
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item active">
+                <a href="index.html" class="sidebar-link">
+                    <span>🏠</span> Home
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="add-entry.html" class="sidebar-link">
+                    <span>👤</span> Customer Details
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="payment.html" class="sidebar-link">
+                    <span>💳</span> Payment Details
+                </a>
+            </li>
+        </ul>
 
-        <div class="quote-box">
-            "Quality means doing it right, understanding customers and delivering value."
+        <!-- Growth Mindset Card -->
+        <div class="growth-card">
+            <div class="growth-image">
+                📈
+            </div>
+
+            <h3>GROWTH<br> MINDSET</h3>
+
+            <div class="growth-points">
+                <div class="point">
+                    <span>🎯</span>
+                    <p>Set Bigger Goals</p>
+                </div>
+
+                <div class="point">
+                    <span>📚</span>
+                    <p>Learn Every Day</p>
+                </div>
+
+                <div class="point">
+                    <span>⚡</span>
+                    <p>Take Action Fast</p>
+                </div>
+
+                <div class="point">
+                    <span>🚀</span>
+                    <p>Keep Growing</p>
+                </div>
+            </div>
+
+            <div class="growth-quote">
+                Dream Big.<br>
+                Work Smart.<br>
+                Stay Consistent.
+            </div>
         </div>
 
-        <button class="start-btn" onclick="window.location.href='add-entry.html'">
-            Open Dashboard →
-        </button>
-    </div>
+        <div class="sidebar-footer">
+            &copy; 2026 ARUN Ledger System
+        </div>
+    </aside>
+
+    <!-- Main Workspace Content Container -->
+    <main class="main-content">
+        <div class="wavy-wrapper">
+            <div class="wave-background-shape layer-two"></div>
+            <div class="wave-background-shape"></div>
+
+            <div class="welcome-card">
+                <h1>Welcome Back! ARUN</h1>
+                <p class="sub-text">Manage your customer records effortlessly.</p>
+
+                <div class="quote-box">
+                    "Quality means doing it right, understanding customers and delivering value."
+                </div>
+
+                <button class="start-btn" onclick="window.location.href='add-entry.html'">
+                    Open Dashboard →
+                </button>
+            </div>
+        </div>
+    </main>
 </div>
+
 <script>
 const canvas = document.getElementById('businessCanvas');
 const ctx = canvas.getContext('2d');
 
 let timeTracker = 0;
 let networkParticles = [];
-const particleCount = 45;
+const particleCount = 60;  
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -182,7 +404,7 @@ function initNetwork() {
             y: Math.random() * canvas.height,
             vx: (Math.random() - 0.5) * 0.4,
             vy: (Math.random() - 0.5) * 0.4,
-            radius: Math.random() * 2 + 2 // Made nodes crisp and visible
+            radius: Math.random() * 2 + 2.5 
         });
     }
 }
@@ -190,10 +412,9 @@ function initNetwork() {
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-/* 🔥 ARUN BACKGROUND SIGNATURE LAYER (Stays exactly the same) */
 function drawArunPattern() {
     ctx.font = "1.6rem 'Brush Script MT', cursive";
-    ctx.fillStyle = "rgba(255,255,255,0.08)";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.08)"; /* Changed watermark to soft white for visibility */
     ctx.textAlign = "center";
 
     const positions = [
@@ -221,9 +442,7 @@ function drawArunPattern() {
     });
 }
 
-/* 🌐 PRO-BUSINESS VISIBLE CONNECTED NETWORK */
 function drawConnectedNetwork() {
-    // Render and move node points
     networkParticles.forEach(p => {
         p.x += p.vx;
         p.y += p.vy;
@@ -234,30 +453,27 @@ function drawConnectedNetwork() {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         
-        // High visibility bright corporate blue dots with soft glow
-        ctx.fillStyle = 'rgba(59, 130, 246, 0.85)';
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = 'rgba(59, 130, 246, 0.5)';
+        ctx.fillStyle = 'rgba(59, 130, 246, 0.9)'; 
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = 'rgba(59, 130, 246, 0.4)'; 
         ctx.fill();
-        ctx.shadowBlur = 0; // Reset blur for efficient loop execution
+        ctx.shadowBlur = 0; 
     });
 
-    // Generate network connections
     for (let i = 0; i < networkParticles.length; i++) {
         for (let j = i + 1; j < networkParticles.length; j++) {
             let dx = networkParticles[i].x - networkParticles[j].x;
             let dy = networkParticles[i].y - networkParticles[j].y;
             let distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance < 150) {
-                let alpha = (1 - (distance / 150)) * 0.28;
+            if (distance < 200) {
+                let alpha = (1 - (distance / 200)) * 0.3; 
                 ctx.beginPath();
                 ctx.moveTo(networkParticles[i].x, networkParticles[i].y);
                 ctx.lineTo(networkParticles[j].x, networkParticles[j].y);
                 
-                // Tech-focused corporate clean connection lines
-                ctx.strokeStyle = `rgba(147, 197, 253, ${alpha})`;
-                ctx.lineWidth = 0.9;
+                ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+                ctx.lineWidth = 1.0; 
                 ctx.stroke();
             }
         }
@@ -268,14 +484,14 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     timeTracker += 0.01;
 
-    // Premium Corporate Gradient Darkspace Layout 
+    /* Radial gradient adapted for dark Navy theme backgrounds */
     let grad = ctx.createRadialGradient(
         canvas.width * 0.5, canvas.height * 0.5, 0,
         canvas.width * 0.5, canvas.height * 0.5, Math.max(canvas.width, canvas.height)
     );
-    grad.addColorStop(0, '#0f172a');
-    grad.addColorStop(0.6, '#030712');
-    grad.addColorStop(1, '#02040a');
+    grad.addColorStop(0, '#1e293b');
+    grad.addColorStop(0.6, '#0f172a');
+    grad.addColorStop(1, '#020617');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
